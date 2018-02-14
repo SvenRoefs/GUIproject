@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title> Optelscript </title>
+</head>
+<body>
+	<h1> Hiermee kunnen we optellen </h1>
+	
+	<form> <!-- Entry form for first number -->
+		<div>
+			<label>Enter first number</label>
+			<input type="number" id="number1" autofocus>
+		</div>
+	
+	<!-- Entry form for second number -->
+		<div>
+			<label>Enter second number</label>
+			<input type="number" id="number2" autofocus>
+		</div>
+		
+		<button type="submit">add numbers</button>
+	</form>		
+	
+	<ul></ul>
+	
+	<script> <!-- Transmission to main.js -->
+		const electron = require('electron');
+		const{ipcRenderer} = electron;
+		const ul = document.querySelector('ul');
+		
+		const form = document.querySelector('form');
+		form.addEventListener('submit', sendNumbers);
+		
+		function sendNumbers(e){
+			e.preventDefault();  <!-- prevents automatic transmission -->
+			const number1 = document.querySelector('#number1').value;
+			const number2 = document.querySelector('#number2').value;
+			ipcRenderer.send('product', number1, number2);
+			//console.log(number1, number2);
+		}
+		
+		<!-- Receiving product from main.js -->
+		ipcRenderer.on('product', function(e, product){
+		console.log(product);
+			const li = document.createElement('li');
+			const itemText = document.createTextNode(product);
+			li.appendChild(itemText);
+			ul.appendChild(li);
+		});
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "optelscript",
+  "version": "1.0.0",
+  "description": "1 + 1 desktop app",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Sven Roefs",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^1.8.2"
+  }
+}
