@@ -4,22 +4,24 @@
 	<title> Optelscript </title>
 </head>
 <body>
-	<h1> Hiermee kunnen we optellen </h1>
-	
-	<form> <!-- Entry form for first number -->
-		<div>
-			<label>Enter first number</label>
-			<input type="number" id="number1" autofocus>
-		</div>
-	
-	<!-- Entry form for second number -->
-		<div>
-			<label>Enter second number</label>
-			<input type="number" id="number2" autofocus>
-		</div>
+	<form>
+	<table>
+		<th> Input form </th>
 		
+		<script type="text/javascript">
+			for(let i=0; i<39; i++){
+			let n = i + 1;
+			document.write('<tr><td><h3> Input row ' + n + ' </h3></td>');
+				for(let k=0; k<3; k++){
+				document.write('<div><td><input type="number" id="number' + i + k +'" autofocus></td></div>');
+				}
+			document.write('</tr>');
+			}
+		</script>
+	
+	</table>
 		<button type="submit">add numbers</button>
-	</form>		
+	</form>
 	
 	<ul></ul>
 	
@@ -32,11 +34,13 @@
 		form.addEventListener('submit', sendNumbers);
 		
 		function sendNumbers(e){
-			e.preventDefault();  <!-- prevents automatic transmission -->
-			const number1 = document.querySelector('#number1').value;
-			const number2 = document.querySelector('#number2').value;
-			ipcRenderer.send('product', number1, number2);
-			//console.log(number1, number2);
+			e.preventDefault();  <!-- prevents forms getting blank after submission -->
+			for(let i=0; i<39; i++){
+				for(let k=0; k<3; k++){
+				var submission = document.querySelector('#number' + i + k).value;
+			ipcRenderer.send('product', submission);
+			}
+			}
 		}
 		
 		<!-- Receiving product from main.js -->

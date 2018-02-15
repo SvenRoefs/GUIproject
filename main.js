@@ -18,22 +18,10 @@ app.on('ready', function(){
 	}));
 });
 
-//function for addition
-/*function addition(number1, number2){
-	var product = number1 + number2;
-	return product; */
-//}
-
 // Catch numbers:add
-ipcMain.on('product',function(e, number1, number2){
-	//console.log(number1, number2);
-	var product = parseFloat(number1) + parseFloat(number2);
+ipcMain.on('product',function(e, submission){
+	//console.log(submission);
+	var product = parseFloat(submission); // + parseFloat(number2) + parseFloat(number3);
 	//console.log(product);
 	mainWindow.webContents.send('product', product);
 });
-
-
-
-
-	
-	

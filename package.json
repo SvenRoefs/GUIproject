@@ -1,7 +1,7 @@
 {
-  "name": "optelscript",
+  "name": "guiproject",
   "version": "1.0.0",
-  "description": "1 + 1 desktop app",
+  "description": "GUIproject",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
